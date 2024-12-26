@@ -1,0 +1,131 @@
+:root {
+	--slow-fast-in: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.webapp-spinner {
+	--spinner-bg-clr: hsl(0 0% 70%);
+	--spinner-border-width: 0.8rem;
+	--spinner-width: 12rem;
+
+	--spinner-expand-shrink-duration: 1333ms;
+	--spinner-container-rotation-duration: 1568ms;
+	--spinner-cycle-duration: 5332ms;
+
+	display: inline-block;
+	width: var(--spinner-width);
+	aspect-ratio: 1 / 1;
+	box-sizing: border-box;
+}
+
+.webapp-spinner > * {
+	pointer-events: none;
+}
+
+.spinner-container {
+	position: relative;
+	animation: spinner-container-rotation
+		var(--spinner-container-rotation-duration) linear infinite;
+}
+
+.spinner-rotator {
+	animation: spinner-rotator var(--spinner-cycle-duration) var(--slow-fast-in)
+		both infinite;
+}
+
+.spinner-left {
+	left: 0;
+}
+
+.spinner-right {
+	right: 0;
+}
+
+.spinner-circle {
+	position: absolute;
+	width: 200%;
+	height: 100%;
+	border-radius: 50%;
+	border: var(--spinner-border-width) solid transparent;
+}
+
+.spinner--right {
+	border-right-color: var(--spinner-bg-clr);
+	border-top-color: var(--spinner-bg-clr);
+	right: 0px;
+	animation: right-spin var(--spinner-expand-shrink-duration)
+		var(--slow-fast-in) forwards infinite;
+}
+.spinner--left {
+	border-left-color: var(--spinner-bg-clr);
+	border-top-color: var(--spinner-bg-clr);
+	left: 0;
+	animation: left-spin var(--spinner-expand-shrink-duration) var(--slow-fast-in)
+		forwards infinite;
+}
+
+/* Utilities Classes */
+
+.spinner-style {
+	width: 100%;
+	height: 100%;
+}
+
+.half-spinner-style {
+	display: inline-block;
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+}
+
+@keyframes right-spin {
+	0%,
+	100% {
+		rotate: -130deg;
+	}
+	50% {
+		rotate: 5deg;
+	}
+}
+@keyframes left-spin {
+	0%,
+	100% {
+		rotate: 130deg;
+	}
+	50% {
+		rotate: -5deg;
+	}
+}
+
+@keyframes spinner-rotator {
+	12.5% {
+		rotate: 135deg;
+	}
+	25% {
+		rotate: 270deg;
+	}
+	37.5% {
+		rotate: 405deg;
+	}
+	50% {
+		rotate: 540deg;
+	}
+	62.5% {
+		rotate: 675deg;
+	}
+	75% {
+		rotate: 810deg;
+	}
+	87.5% {
+		rotate: 945deg;
+	}
+	100% {
+		rotate: 1080deg;
+	}
+}
+
+@keyframes spinner-container-rotation {
+	100% {
+		rotate: 360deg;
+	}
+}
